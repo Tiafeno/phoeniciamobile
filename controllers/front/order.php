@@ -56,6 +56,12 @@ class PhoeniciamobileOrderModuleFrontController extends ModuleFrontController
                 throw new Exception("Signature url invalide");
             }
             $customer = reset($result);
+
+            // Add cart un cookie
+            $cart = new Cart((int)$cart_id);
+            if (!$cart->id) {
+                throw new Exception("Une erreur s'est produite. Panier introuvable");
+            }
             
             // Authentification customer
             $id_customer = (int) $customer['id_customer'];
@@ -64,12 +70,7 @@ class PhoeniciamobileOrderModuleFrontController extends ModuleFrontController
                 Context::getContext()->updateCustomer($customer);
             }
 
-            // Add cart un cookie
-            $cart = new Cart((int)$cart_id);
-            if (!$cart->id) {
-                throw new Exception("Une erreur s'est produite. Panier introuvable");
-            }
-
+            
             //$order_total = $cart->getOrderTotal(true, Cart::BOTH);
             $this->context->cookie->id_cart = $cart->id;
             $this->context->cart = $cart;
