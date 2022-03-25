@@ -1,0 +1,62 @@
+{
+    "packages": [
+        {
+            "name": "ahsankhatri/cryptolib-php",
+            "version": "v1.1.0",
+            "version_normalized": "1.1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ahsankhatri/cryptolib-php.git",
+                "reference": "2a8c76cc4083d501d30d49b55daf69719824633e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ahsankhatri/cryptolib-php/zipball/2a8c76cc4083d501d30d49b55daf69719824633e",
+                "reference": "2a8c76cc4083d501d30d49b55daf69719824633e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-openssl": "*",
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "larapack/dd": "^1.0",
+                "phpunit/phpunit": "^7.0"
+            },
+            "time": "2019-05-02T22:56:00+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "MrShan0\\CryptoLib\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ahsaan Muhammad Yousuf",
+                    "email": "ahsankhatri1992@gmail.com",
+                    "homepage": "https://ahsaan.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A library to encrypt or decrypt with random password generator based on secret key defined.",
+            "homepage": "https://github.com/ahsankhatri/cryptolib-php",
+            "keywords": [
+                "Rijndael",
+                "aes-encryption",
+                "cryptolib"
+            ],
+            "support": {
+                "issues": "https://github.com/ahsankhatri/cryptolib-php/issues",
+                "source": "https://github.com/ahsankhatri/cryptolib-php/tree/v1.1.0"
+            },
+            "install-path": "../ahsankhatri/cryptolib-php"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}
