@@ -4,14 +4,14 @@ if (!defined('_PS_VERSION_')) {
 }
 
 
-// Needed for installing process 
+// Needed for installing process
 require_once __DIR__ . '/vendor/autoload.php';
 
 class Phoeniciamobile extends Module {
     public function __construct() {
         $this->name = 'phoeniciamobile';
         $this->tab = 'front_office_features';
-        $this->version = '1.0.0';
+        $this->version = '1.0.1';
         $this->author = 'Tiafeno Finel';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
