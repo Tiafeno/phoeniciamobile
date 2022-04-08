@@ -26,7 +26,7 @@ class PhoeniciamobileOrderModuleFrontController extends ModuleFrontController
             if (!$ic || !$iv || !$crypted_customer) {
                 throw new Exception("Information incomplete. Veuillez contatez l'administrateur");
             }
-    
+
             /**
              * Phase one decrypt data base64
              */
@@ -62,24 +62,28 @@ class PhoeniciamobileOrderModuleFrontController extends ModuleFrontController
             if (!$cart->id) {
                 throw new Exception("Une erreur s'est produite. Panier introuvable");
             }
-            
+
             // Authentification customer
             $id_customer = (int) $customer['id_customer'];
             $customer = new Customer((int) $id_customer);
+            $context = Context::getContext();
             if (Validate::isLoadedObject($customer)) {
-                Context::getContext()->updateCustomer($customer);
+                $context->updateCustomer($customer);
             }
-
-            
             //$order_total = $cart->getOrderTotal(true, Cart::BOTH);
-            $this->context->cookie->id_cart = $cart->id;
-            $this->context->cart = $cart;
-            CartRule::autoAddToCart($this->context);
-            $this->context->cookie->write();
+            Context::getContext()->cart = $cart;
+            CartRule::autoAddToCart(Context::getContext());
+            Context::getContext()->cookie->id_cart = $cart->id;
 
             // $epayment = Module::getInstanceByName($this->payment_module);
             // $response = $epayment->validateOrder($cart->id, $order_status, $order_total, $card_label, null, array(), (int)$currency_id, false, $secure_key);
             //$url = "index.php?fc=module&module=epayment&controller=redirect&a=r&method=6";
+
+            // Get cart total
+            $total = $cart->getOrderTotal(true, Cart::BOTH);
+            if ((int)$total == 0) {
+                throw new Exception("Le montant total de votre panier est égale à zero (0)");
+            }
 
             Tools::redirect(Context::getContext()->link->getModuleLink($this->payment_module, 'redirect', [
                 "a" => "r",
@@ -93,5 +97,5 @@ class PhoeniciamobileOrderModuleFrontController extends ModuleFrontController
     }
 
 
-   
+
 }
