@@ -11,7 +11,7 @@ class Phoeniciamobile extends Module {
     public function __construct() {
         $this->name = 'phoeniciamobile';
         $this->tab = 'front_office_features';
-        $this->version = '1.0.1';
+        $this->version = '1.2.1';
         $this->author = 'Tiafeno Finel';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
