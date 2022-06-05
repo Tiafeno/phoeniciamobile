@@ -51,11 +51,15 @@ class PhoeniciamobileBlogModuleFrontController extends ModuleFrontController {
         $data = [];
         foreach ($news as $new) {
             $blog = new Blog($new);
+            $categories = $blog->categories;
+            $categories_values = array_values($categories);
+
             $data[] = [
+                "id" => (int)$blog->id_prestablog_news,
                 "title" => $blog->title,
-                "content" => $blog->content,
-                "paragraph" => $blog->paragraph,
-                "categories" => $blog->categories,
+                "date" => $blog->date,
+                "content" => base64_encode($blog->content),
+                "categories" => $categories_values,
                 "paragraph_crop" => $blog->paragraph_crop
             ];
         }
