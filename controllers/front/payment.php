@@ -10,22 +10,23 @@ class PhoeniciamobilePaymentModuleFrontController extends ModuleFrontController 
     public $ajax;
     public $payments = [];
     protected $salt = "WF0nn4LyAdcbQC1vcgE0gpm0gCxlUmAr";
-    
+
     public function __construct()
     {
         parent::__construct();
     }
 
+    /**
+     * It gets all the payment modules installed on the shop, then it gets all the active cards from
+     * the database, then it adds the module name and the image path to the card, then it returns the
+     * cards as a json object.
+     */
     public function display()
     {
         $this->ajax = 1;
-		// Make asure payment module is hook at PaymentOptions
         $modules = PaymentModule::getInstalledPaymentModules();
-		//$e_payment = Module::getInstanceById(105);
-        //dump($modules);
         foreach ($modules as $module) {
             if ($module['name'] == "epayment") {
-                //$module_obj = Module::getInstanceById($module['id_module']);
                 $sql = new DbQuery();
                 $sql->select('*');
                 $sql->from('paybox_card', 'card');
@@ -41,8 +42,6 @@ class PhoeniciamobilePaymentModuleFrontController extends ModuleFrontController 
                 // Seulement le paiement par vodafone est autorisée
             }
         }
-        
-    
         echo Tools::jsonEncode($this->payments);
 		die();
     }

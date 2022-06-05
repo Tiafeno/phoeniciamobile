@@ -11,6 +11,12 @@ class PhoeniciamobileForgotpasswordModuleFrontController extends ModuleFrontCont
         parent::__construct();
     }
 
+    /**
+     * If the email address is not found in the database, it will send an email to the email address
+     * with a link to reset the password.
+     * If the email address is found in the database, it will send an email to the email address with a
+     * link to reset the password.
+     */
     public function postProcess() {
         $this->ajax = 1;
         $errors = [];
